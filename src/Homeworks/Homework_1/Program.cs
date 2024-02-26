@@ -82,15 +82,16 @@ bool TestReverseTransformBW()
 bool Test()
 {
     var TestCases = new bool[] {TestSuffmassCreate(), TestTransformBW(), TestSearchIndex(), TestReverseTransformBW()};
+    bool Passed = true;
     for (int i = 0; i < TestCases.Length; ++i)
     {
         if (!TestCases[i])
         {
-            return false;
+            Passed = false;
         }
     }
 
-    return true;
+    return Passed;
 }
 
 void UserInterface()

@@ -4,12 +4,7 @@ namespace BWT
     {
         private static bool LineVerification(string InputString)
         {
-            if (string.IsNullOrEmpty(InputString))
-            {
-                return false;
-            }
-            
-            return true;
+            return !string.IsNullOrEmpty(InputString);
         }
 
         public static string[] SuffmasCreate(string InputString)
