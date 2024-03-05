@@ -9,7 +9,7 @@ public class PolishCalculator
         this.stack = stack ?? throw new NullReferenceException("Can't be null");
     }
 
-    public bool IsSign(string element) => element == "+" || element == "-" || element == "*" || element == "=";
+    public bool IsSign(string element) => element == "+" || element == "-" || element == "*" || element == "/";
 
     public string [] CheckString (string? InputString)
     {
@@ -111,7 +111,7 @@ public class PolishCalculator
                     }
 
                 }
-                
+
             default:
             {
                 throw new InvalidOperationException("Unknown operation");
