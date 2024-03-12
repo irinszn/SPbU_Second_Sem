@@ -100,9 +100,9 @@ public class PolishCalculator
             
             case '/':
                 {
-                    if (Math.Abs(SecondNumber) < NullConst)
+                    if (Math.Abs(FirstNumber) < NullConst)
                     {
-                        throw new InvalidOperationException("Division by zero");
+                        throw new DivideByZeroException("Division by zero");
                     }
 
                     else 
