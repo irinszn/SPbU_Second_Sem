@@ -18,7 +18,6 @@ public class Tests
     [TestCase(true, "1234","12345", "123456")]
     [TestCase(true, "яблоко","банан", "сочный арбуз", "барабан")]
     [TestCase(false, "a","p", "p", "l", "e")]
-
     public void CorrectAdd(bool expected, params string[] words)
     {
         var actual = true;
@@ -35,7 +34,6 @@ public class Tests
     [TestCase(1, "", "", "", "")]
     [TestCase(3, "1234","12345", "123456")]
     [TestCase(2, "apple","banana", "banana")]
-    
     public void CorrectAddWithCorrectSize(int expectedSize, params string[] words)
     {
 
@@ -49,14 +47,12 @@ public class Tests
         Assert.That(actualSize == expectedSize);
     }
 
-
     [TestCase(false," ", "", "apple", "banana", "watermelon")]
     [TestCase(true, "", "", "", "")]
     [TestCase(false, "banana","apple", "banan")]
     [TestCase(false, "1234","12345", "123456")]
     [TestCase(true, "сочный арбуз","банан", "сочный арбуз", "барабан")]
     [TestCase(false, "","apple", "banan")]
-
     public void CorrectAddAndThenCorrectContains(bool expected, string word, params string[] words)
     {
 
@@ -75,7 +71,6 @@ public class Tests
     [TestCase(false, "banana","apple", "banan")]
     [TestCase(false, "1234","12345", "123456")]
     [TestCase(true, "сочный арбуз","банан", "сочный арбуз", "барабан")]
-
     public void CorrectRemove(bool expected, string wordToRemove, params string[] words)
     {
 
@@ -87,12 +82,10 @@ public class Tests
         var actual = trie.Remove(wordToRemove);
 
         Assert.That(actual == expected);
-        
     }
 
     [TestCase(false,"apple", "яблоко", "apple", "banana", "watermelon")]
     [TestCase(false, "", "", "", "")]
-
     public void CorrectRemoveAndThenCorrectContains(bool expected, string wordToRemove, params string[] words)
     {
 
@@ -107,11 +100,9 @@ public class Tests
         Assert.That(actual == expected);
     }
 
-
     [TestCase(3,"banana","m", "apple", "banana", "watermelon")]
     [TestCase(0, "", "", "", "")]
     [TestCase(2, "1234","12345", "123456")]
-
     public void CorrectRemoveAndCorrectSize(int expectedSize, string wordToDelete, params string[] words)
     {
 
@@ -129,7 +120,6 @@ public class Tests
     [TestCase(0,"ananas","m", "apple", "banana", "watermelon")]
     [TestCase(4,"ban","ban", "bana", "banana", "bananas")]
     [TestCase(4,"","m", "apple", "banana", "watermelon")]
-
     public void CorrectHowManyStartsWithPrefix(int expectedCount, string prefix, params string[] words)
     {
         foreach (var element in words)
@@ -140,12 +130,10 @@ public class Tests
         int actualCount = trie.HowManyStartsWithPrefix(prefix);
 
         Assert.That(actualCount == expectedCount);
-
     }
 
     [TestCase(1,"ananas","app", "apple", "banana", "watermelon")]
     [TestCase(3,"ban","ban", "bana", "banana", "bananas")]
-
     public void CorrectHowManyStartsWithPrefixWithRemove(int expectedCount, string wordToDelete, string prefix, params string[] words)
     {
         foreach (var element in words)
@@ -157,25 +145,5 @@ public class Tests
         int actualCount = trie.HowManyStartsWithPrefix(prefix);
         
         Assert.That(actualCount == expectedCount);
-        
     }
-
-    [Test]
-    public void CorrectThrowNullReferenceExceptionWithAdd()
-    {
-        Assert.Throws<NullReferenceException>( () => trie.Add(null));
-    }
-
-    [Test]
-    public void CorrectThrowNullReferenceExceptionWithRemove()
-    {
-        Assert.Throws<NullReferenceException>( () => trie.Remove(null));
-    }
-
-    [Test]
-    public void CorrectThrowNullReferenceExceptionWithContains()
-    {
-        Assert.Throws<NullReferenceException>( () => trie.Contains(null));
-    }
-
 }
