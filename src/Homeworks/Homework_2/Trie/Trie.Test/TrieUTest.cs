@@ -12,7 +12,6 @@ public class Tests
         trie = new Trie();
     }
 
-
     [TestCase(true," ", "", "apple", "banana", "watermelon")]
     [TestCase(false, "", "", "", "")]
     [TestCase(false, "apple","banana", "banana")]
@@ -106,7 +105,6 @@ public class Tests
         var actual = trie.Contains(wordToRemove);
 
         Assert.That(actual == expected);
-
     }
 
 

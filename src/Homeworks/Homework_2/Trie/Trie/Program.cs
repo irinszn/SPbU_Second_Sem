@@ -20,7 +20,6 @@ var work = true;
 while (work)
 {
     Console.WriteLine("Input one of the actions 0 - 5: ");
-    
     var action = Console.ReadLine();
 
     switch (action)
@@ -30,7 +29,7 @@ while (work)
             work = false;
             break;
         }
-        
+
         case "1":
         {
             Console.WriteLine("Input the word that you want to add: ");
@@ -42,12 +41,11 @@ while (work)
                 break;
             }
 
-            bool IsSuccess = trie.Add(word);
+            bool isSuccess = trie.Add(word);
 
-            Console.WriteLine(IsSuccess ? "Word added" : "Word is already in trie");
+            Console.WriteLine(isSuccess ? "Word added" : "Word is already in trie");
             break;
         }
-
 
         case "2":
         {
@@ -60,9 +58,9 @@ while (work)
                 break;
             }
 
-            bool IsSuccess = trie.Remove(word);
+            bool isSuccess = trie.Remove(word);
 
-            Console.WriteLine(IsSuccess ? "Word removed" : "No such word in trie");
+            Console.WriteLine(isSuccess ? "Word removed" : "No such word in trie");
             break;
         }
 
@@ -77,18 +75,17 @@ while (work)
                 break;
             }
 
-            bool IsSuccess = trie.Contains(word);
+            bool isSuccess = trie.Contains(word);
 
-            Console.WriteLine(IsSuccess ? "Word found" : "No such word in trie");
+            Console.WriteLine(isSuccess ? "Word found" : "No such word in trie");
             break;
-
         }
 
         case "4":
         {
             Console.WriteLine("Input the prefix: ");
             var prefix = Console.ReadLine();
-            
+
             if (prefix == null)
             {
                 Console.WriteLine("Prefix can't be null");
@@ -97,7 +94,6 @@ while (work)
 
             Console.WriteLine($"{trie.HowManyStartsWithPrefix(prefix)} elements starts with {prefix}");
             break;
-
         }
 
         case "5":
@@ -109,8 +105,5 @@ while (work)
         default:
             Console.WriteLine("There is no such number");
             break;
-
     }
-
 }
-
