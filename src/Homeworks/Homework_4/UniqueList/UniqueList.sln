@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniqueList", "UniqueList.csproj", "{3AFB466D-2B1F-45C1-8A55-C155326F50C2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniqueList", "UniqueList\UniqueList.csproj", "{3AFB466D-2B1F-45C1-8A55-C155326F50C2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniqueList.Test", "UniqueList.Test\UniqueList.Test.csproj", "{E701ABDA-153C-4DCD-94BD-86A200784E2B}"
 EndProject
