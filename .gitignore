@@ -399,3 +399,7 @@ FodyWeavers.xsd
 
 # XML files
 *.xml
+
+#addition
+\bin
+\obj
