@@ -39,7 +39,7 @@ public class Vector
         return true;
     }
 
-    public Vector Sum(Vector newVector)
+    public Dictionary<int, float> Sum(Dictionary<int, float> newVector)
     {
         var SumVector = new Dictionary<int, float>();
 
@@ -63,7 +63,7 @@ public class Vector
         return SumVector;
     }
 
-    public Vector Differens()
+    public Dictionary<int, float> Differens(Dictionary<int, float> newVector)
     {
         var DiffVector = new Dictionary<int, float>();
 
@@ -76,7 +76,7 @@ public class Vector
         {
             if (DiffVector.ContainsKey(element.Key))
             {
-                DiffVector[element.Key] = DiffVector[element.key] - element.Value;
+                DiffVector[element.Key] -= element.Value;
             }
         }
 
@@ -89,7 +89,7 @@ public class Vector
 
         foreach (var element in vector)
         {
-            scalar += element.Value * newVector[element.Key].Value;
+            scalar += element.Value * newVector.GetCordinates(element.Key);
         }
 
         return scalar;
