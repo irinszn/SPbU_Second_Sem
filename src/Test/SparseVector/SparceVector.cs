@@ -85,7 +85,7 @@ public class Vector
 
     public float ScalarMultiplication(Vector newVector)
     {
-        var scalar = 0;
+        float scalar = 0;
 
         foreach (var element in vector)
         {
