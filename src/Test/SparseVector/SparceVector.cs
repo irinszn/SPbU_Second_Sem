@@ -2,19 +2,18 @@ namespace SparseVector;
 
 public class Vector
 {
-    private Dictionary<int, float> vector;
+    public Dictionary<int, float> vector = new();
 
-    public Vector()
+    public void AddValue(int index, float value)
     {
-        this.vector = new Dictionary<int, float>();
-    } 
-
-    public void AddCoordinates(int index, float coordinates)
-    {
-        vector[index] = coordinates;
+        if (value == 0)
+        {
+            return;
+        }
+        vector[index] = value;
     }   
 
-    public float GetCordinates(int index)
+    public float GetValue(int index)
     {
         if (!vector.ContainsKey(index))
         {
@@ -26,11 +25,35 @@ public class Vector
         }
     }
 
+    public float this[int index]
+    {
+        get 
+        {
+            if (!vector.ContainsKey(index))
+            {
+                return 0;
+            }
+            else
+            {
+                return vector[index];
+            };
+        }
+        set
+        {
+            if (value == 0)
+            {
+                return;
+            }
+
+            vector[index] = value; ;
+        }
+    }
+
     public bool IfIsNull()
     {
         foreach (var element in vector)
         {
-            if (element.Value == 0)
+            if (element.Value != 0)
             {
                 return false;
             }
@@ -39,48 +62,52 @@ public class Vector
         return true;
     }
 
-    public Dictionary<int, float> Sum(Dictionary<int, float> newVector)
+    public Dictionary<int, float> Add(Dictionary<int, float> newVector)
     {
-        var SumVector = new Dictionary<int, float>();
+        var sumVector = new Dictionary<int, float>();
 
         foreach (var element in vector)
         {
-            SumVector[element.Key] = element.Value;
+            sumVector[element.Key] = element.Value;
         }
 
         foreach (var element in newVector)
         {
-            if (!SumVector.ContainsKey(element.Key))
+            if (!sumVector.ContainsKey(element.Key))
             {
-                SumVector[element.Key] = element.Value;
+                sumVector[element.Key] = element.Value;
             }
             else
             {
-                SumVector[element.Key] += element.Value;
+                sumVector[element.Key] += element.Value;
             }
         }
 
-        return SumVector;
+        return sumVector;
     }
 
-    public Dictionary<int, float> Differens(Dictionary<int, float> newVector)
+    public Dictionary<int, float> Subtract(Dictionary<int, float> newVector)
     {
-        var DiffVector = new Dictionary<int, float>();
+        var subVector = new Dictionary<int, float>();
 
         foreach (var element in vector)
         {
-            DiffVector[element.Key] = element.Value;
+            subVector[element.Key] = element.Value;
         }
 
         foreach (var element in newVector)
         {
-            if (DiffVector.ContainsKey(element.Key))
+            if (!subVector.ContainsKey(element.Key))
             {
-                DiffVector[element.Key] -= element.Value;
+                subVector[element.Key] = -element.Value;
+            }
+            else
+            {
+                subVector[element.Key] -= element.Value;
             }
         }
 
-        return DiffVector;
+        return subVector;
     }
 
     public float ScalarMultiplication(Vector newVector)
@@ -89,7 +116,7 @@ public class Vector
 
         foreach (var element in vector)
         {
-            scalar += element.Value * newVector.GetCordinates(element.Key);
+            scalar += element.Value * newVector[element.Key];
         }
 
         return scalar;
