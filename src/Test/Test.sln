@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparseVector", "SparseVector\SparseVector.csproj", "{06D57523-6889-4B01-A8A1-380D3D6E021F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparseVector.Test", "SparseVector.Test\SparseVector.Test.csproj", "{897BC118-5A29-4065-80D8-4F76221AC503}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{06D57523-6889-4B01-A8A1-380D3D6E021F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06D57523-6889-4B01-A8A1-380D3D6E021F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06D57523-6889-4B01-A8A1-380D3D6E021F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{897BC118-5A29-4065-80D8-4F76221AC503}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{897BC118-5A29-4065-80D8-4F76221AC503}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{897BC118-5A29-4065-80D8-4F76221AC503}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{897BC118-5A29-4065-80D8-4F76221AC503}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
