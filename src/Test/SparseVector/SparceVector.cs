@@ -13,30 +13,13 @@ public class Vector
         vector[index] = value;
     }   
 
-    public float GetValue(int index)
-    {
-        if (!vector.ContainsKey(index))
-        {
-            return 0;
-        }
-        else
-        {
-            return vector[index];
-        }
-    }
-
+    public float GetValue(int index) => vector.ContainsKey(index) ? vector[index] : 0;
+   
     public float this[int index]
     {
         get 
         {
-            if (!vector.ContainsKey(index))
-            {
-                return 0;
-            }
-            else
-            {
-                return vector[index];
-            };
+           return vector.ContainsKey(index) ? vector[index] : 0;
         }
         set
         {
