@@ -14,16 +14,16 @@ public class Tests
     [Test]
     public void Add_WorksCorrectly()
     {
-        var expected = new int[] {10, 4, 15, 2, 3, 7};
+        var expectedValue = new int[] {10, 15, 3};
+        var expectedPriority = new int[] {4, 2, 7};
 
         queue.Enqueue(10, 4);
         queue.Enqueue(15, 2);
         queue.Enqueue(3, 7);
 
-        Console.WriteLine(queue[1]);
-        for (int i = 0; i < expected.Length; i += 2)
+        for (int i = 0; i < expectedValue.Length; ++i)
         {
-            Assert.That((queue[i].Item1 == expected[i]) && (queue[i].Item2 == expected[i + 1]));
+            Assert.That((queue[i].Item1 == expectedValue[i]) && (queue[i].Item2 == expectedPriority[i]));
         }
     }
 }

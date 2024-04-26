@@ -11,7 +11,10 @@ public class PriorityQueue<T>
     /// </summary>
     private List<(T, int)> queue = new List<(T, int)> ();
 
-    public int this[int index]
+    /// <summary>
+    /// Indexator for queue.
+    /// </summary>
+    public (T, int) this[int index]
     {
         get 
         {
