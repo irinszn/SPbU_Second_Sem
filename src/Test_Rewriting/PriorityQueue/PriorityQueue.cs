@@ -11,6 +11,18 @@ public class PriorityQueue<T>
     /// </summary>
     private List<(T, int)> queue = new List<(T, int)> ();
 
+    public int this[int index]
+    {
+        get 
+        {
+           return queue[index];
+        }
+        set
+        {
+            queue[index] = value; ;
+        }
+    }
+
     /// <summary>
     /// Method that Add element in queue.
     /// </summary>
