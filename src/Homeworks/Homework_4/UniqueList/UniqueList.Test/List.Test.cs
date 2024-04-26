@@ -51,7 +51,7 @@ public class Tests
     public void CorrectInsert_WithCorrectInput(params int[] expected)
     {
         list.Insert(2, 100);
-        list.Insert(0,555);
+        list.Insert(0, 555);
         list.Insert(list.Size, 777);
 
         Assert.That(IsEqual(list, expected));

@@ -20,7 +20,7 @@ public class MyUniqueList<T> : MyList<T>
 
         Node currentNode = head!;
 
-        for (var i = 0; i < Size - 1; ++i)
+        while (currentNode is not null)
         {
             if (currentNode.Value!.Equals(element))
             {
@@ -30,7 +30,7 @@ public class MyUniqueList<T> : MyList<T>
             currentNode = currentNode.Next!;
         }
 
-        return currentNode.Value!.Equals(element);
+        return false;
     }
 
     /// <summary>

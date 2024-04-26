@@ -150,7 +150,7 @@ public class MyList<T> : IEnumerable<T>
     IEnumerator<T> IEnumerable<T>.GetEnumerator()
     {
         Node? currentNode = head;
-        while (currentNode != null)
+        while (currentNode is not null)
         {
             yield return currentNode.Value;
             currentNode = currentNode.Next;
