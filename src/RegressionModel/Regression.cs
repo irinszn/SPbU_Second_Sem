@@ -2,7 +2,7 @@
 using Microsoft.ML.Data;
 using Microsoft.ML.Trainers.FastTree;
 using System;
-
+using System.Linq;
 
 namespace MultipleRegression
 {
@@ -77,7 +77,7 @@ namespace MultipleRegression
         public float TotalRooms;
 
         [LoadColumn(10)]
-        public string UseCode;
+        public string? UseCode;
     }
 
     public class Output
