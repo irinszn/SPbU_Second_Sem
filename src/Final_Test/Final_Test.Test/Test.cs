@@ -39,4 +39,16 @@ public class Tests
 
         Assert.That(expectedList, Is.EqualTo(sortedList));
     }
+
+    [Test]
+    public void BubbleSort_WorksCorrectly_WithEmptyList()
+    {
+        var expectedList = new List<int>();
+        var list = new List<int>();
+
+        IComparer<int> comparer = Comparer<int>.Default;
+        var sortedList = BubbleSort<int>.Sort(list, comparer);
+
+        Assert.That(expectedList, Is.EqualTo(sortedList));
+    }
 }
