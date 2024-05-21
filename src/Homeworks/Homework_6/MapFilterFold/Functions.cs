@@ -15,16 +15,6 @@ public static class Functions
     /// <returns>New transformed list.</returns>
     public static List<TRes> Map<T, TRes>(List<T> list, Func<T, TRes> func)
     {
-        if (list == null)
-        {
-            throw new ArgumentNullException(nameof(list));
-        }
-
-        if (func == null)
-        {
-            throw new ArgumentNullException(nameof(func));
-        }
-
         var resultList = new List<TRes>();
 
         foreach (var element in list)
@@ -44,16 +34,6 @@ public static class Functions
     /// <returns>New filtered list.</returns>
     public static List<T> Filter<T>(List<T> list, Func<T, bool> func)
     {
-        if (list == null)
-        {
-            throw new ArgumentNullException(nameof(list));
-        }
-
-        if (func == null)
-        {
-            throw new ArgumentNullException(nameof(func));
-        }
-
         var resultList = new List<T>();
 
         foreach (var element in list)
@@ -78,16 +58,6 @@ public static class Functions
     /// <returns>Accumulated value.</returns>
     public static TRes Fold<T, TRes>(List<T> list, TRes initValue, Func<TRes, T, TRes> func)
     {
-        if (list == null)
-        {
-            throw new ArgumentNullException(nameof(list));
-        }
-
-        if (func == null)
-        {
-            throw new ArgumentNullException(nameof(func));
-        }
-
         var result = initValue;
 
         foreach (var element in list)
