@@ -1,9 +1,17 @@
 namespace SparseVector;
 
+/// <summary>
+/// Class that implements sparse vector.
+/// </summary>
 public class Vector
 {
     public Dictionary<int, float> vector = new();
 
+    /// <summary>
+    /// Add value in sparse vector.
+    /// </summary>
+    /// <param name="index">Place to add.</param>
+    /// <param name="value">Value to add.</param>
     public void AddValue(int index, float value)
     {
         if (value == 0)
@@ -13,8 +21,16 @@ public class Vector
         vector[index] = value;
     }   
 
+    /// <summary>
+    /// Get value of vector by index.
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns></returns>
     public float GetValue(int index) => vector.ContainsKey(index) ? vector[index] : 0;
-   
+
+    /// <summary>
+    /// Indexator.
+    /// </summary>
     public float this[int index]
     {
         get 
@@ -32,6 +48,10 @@ public class Vector
         }
     }
 
+    /// <summary>
+    /// Checks if sparse vector is null.
+    /// </summary>
+    /// <returns></returns>
     public bool IfIsNull()
     {
         foreach (var element in vector)
@@ -45,6 +65,11 @@ public class Vector
         return true;
     }
 
+    /// <summary>
+    /// Method that implements addition if two sparse vectors.
+    /// </summary>
+    /// <param name="newVector">Second vector.</param>
+    /// <returns>Result of addition.</returns>
     public Dictionary<int, float> Add(Dictionary<int, float> newVector)
     {
         var sumVector = new Dictionary<int, float>();
@@ -69,6 +94,11 @@ public class Vector
         return sumVector;
     }
 
+    /// <summary>
+    /// Method that implements subtraction if two sparse vectors.
+    /// </summary>
+    /// <param name="newVector">Second vector.</param>
+    /// <returns>Result of subtraction.</returns>
     public Dictionary<int, float> Subtract(Dictionary<int, float> newVector)
     {
         var subVector = new Dictionary<int, float>();
@@ -93,6 +123,11 @@ public class Vector
         return subVector;
     }
 
+    /// <summary>
+    /// Method that implements scalar multiplication of two sparse vectors.
+    /// </summary>
+    /// <param name="newVector">Second vector.</param>
+    /// <returns>Result of scalar multiplication.</returns>
     public float ScalarMultiplication(Vector newVector)
     {
         float scalar = 0;
