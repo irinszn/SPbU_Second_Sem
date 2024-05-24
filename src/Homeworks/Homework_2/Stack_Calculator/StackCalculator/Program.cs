@@ -1,19 +1,19 @@
 ﻿using StackCalculator;
 
 Console.WriteLine("Input the expression in the Polish notation (integer number with spaces and operations)");
-string? InputString = Console.ReadLine();
+var inputString = Console.ReadLine();
 
 var arrayStack = new StackArray();
 var stackCalculator = new PolishCalculator(arrayStack);
 
-float CalculatedExpression = stackCalculator.CalculateExpression(InputString);
+var calculatedExpression = stackCalculator.CalculateExpression(inputString);
 
-Console.WriteLine($"The result of expression (Array-based stack): {CalculatedExpression}");
+Console.WriteLine($"The result of expression (Array-based stack): {calculatedExpression}");
 
 
 var listStack = new StackList();
 stackCalculator = new PolishCalculator(listStack);
 
-CalculatedExpression = stackCalculator.CalculateExpression(InputString);
+calculatedExpression = stackCalculator.CalculateExpression(inputString);
 
-Console.WriteLine($"The result of expression (List-based stack): {CalculatedExpression}");
+Console.WriteLine($"The result of expression (List-based stack): {calculatedExpression}");

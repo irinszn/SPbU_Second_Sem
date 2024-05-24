@@ -1,29 +1,45 @@
 namespace StackCalculator;
 
+/// <summary>
+/// Class that implements stack calculator.
+/// </summary>
 public class PolishCalculator
 {
     private readonly IStack stack;
 
+    /// <summary>
+    /// Stack initialization.
+    /// </summary>
     public PolishCalculator(IStack? stack)
     {
         this.stack = stack ?? throw new NullReferenceException("Can't be null");
     }
 
+    /// <summary>
+    /// Checks if element is operation.
+    /// </summary>
+    /// <param name="element">operation.</param>
+    /// <returns>True if element is operation, else false.</returns>
     public bool IsSign(string element) => element == "+" || element == "-" || element == "*" || element == "/";
 
-    public string [] CheckString (string? InputString)
+    /// <summary>
+    /// Checks if input string is in correct format.
+    /// </summary>
+    /// <param name="inputString">Input string.</param>
+    /// <returns>Array of operations and operators.</returns>
+    public string[] CheckString (string? inputString)
     {
 
-        if (InputString == null || InputString == string.Empty)
+        if (inputString == null || inputString == string.Empty)
         {
             throw new NullReferenceException("String can't be empty or null");
         }
 
-        var stringArray = InputString.Split(' ');
+        var stringArray = inputString.Split(' ');
 
-        if (! int.TryParse(stringArray[0], out var _))
+        if (!int.TryParse(stringArray[0], out var _))
         {
-            throw new InvalidOperationException("Incorrect input");
+            throw new InvalidoperationException("Incorrect input");
         }
 
         int digitCount = 0;
@@ -31,7 +47,7 @@ public class PolishCalculator
         
         foreach (var element in stringArray)
         {
-            bool isDigit = int.TryParse(element, out var _);
+            var isDigit = int.TryParse(element, out var _);
 
             if (isDigit)
             {
@@ -45,27 +61,31 @@ public class PolishCalculator
 
             else
             {
-                throw new InvalidOperationException("Incorrect input");
+                throw new InvalidoperationException("Incorrect input");
             }
 
         }
 
         if (digitCount - operationCount != 1)
         {
-            throw new InvalidOperationException("Incorrect input");
+            throw new InvalidoperationException("Incorrect input");
         }
 
         return stringArray;
     }
 
-    public float CalculateExpression(string? InputString)
+    /// <summary>
+    /// Method that calculate input expression.
+    /// </summary>
+    /// <param name="inputString">Input expression.</param>
+    /// <returns>Result of calculations.</returns>
+    public float CalculateExpression(string? inputString)
     {
-        string [] StringArray = CheckString(InputString);
+        var stringArray = CheckString(inputString);
 
-        foreach (string element in StringArray)
+        foreach (var element in stringArray)
         {
-            
-            bool isDigit = int.TryParse(element, out var number);
+            var isDigit = int.TryParse(element, out var number);
 
             if (isDigit)
             {
@@ -77,44 +97,50 @@ public class PolishCalculator
                 float result = TransformValue(stack.Pop(), stack.Pop(), char.Parse(element));
                 stack.Push(result);
             }
-            
         }
         
         return stack.Pop();
     }
 
-    public float TransformValue(float FirstNumber, float SecondNumber, char Operation)
+    /// <summary>
+    /// Method that evaluates expression from two values.
+    /// </summary>
+    /// <param name="firstNumber">First operand.</param>
+    /// <param name="secondNumber">Second operand.</param>
+    /// <param name="operation">Operation.</param>
+    /// <returns></returns>
+    public float TransformValue(float firstNumber, float secondNumber, char operation)
     {
         const float NullConst = 0.01e-4F;
 
-        switch (Operation)
+        switch (operation)
         {
             case '+':
-                return FirstNumber + SecondNumber;
+                return firstNumber + secondNumber;
             
             case '-':
-                return SecondNumber - FirstNumber;
+                return secondNumber - firstNumber;
 
             case '*':
-                return FirstNumber * SecondNumber;
+                return firstNumber * secondNumber;
             
             case '/':
                 {
-                    if (Math.Abs(FirstNumber) < NullConst)
+                    if (Math.Abs(firstNumber) < NullConst)
                     {
                         throw new DivideByZeroException("Division by zero");
                     }
 
                     else 
                     {
-                        return SecondNumber / FirstNumber;
+                        return secondNumber / firstNumber;
                     }
 
                 }
 
             default:
             {
-                throw new InvalidOperationException("Unknown operation");
+                throw new InvalidoperationException("Unknown operation");
             }
         }
     }

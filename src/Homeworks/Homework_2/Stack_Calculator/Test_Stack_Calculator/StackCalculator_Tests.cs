@@ -85,6 +85,7 @@ public class CalculatorTests
         Assert.Throws<InvalidOperationException> (() => calculator.CalculateExpression(expression)); 
     }
 
+    [TestCaseSource(nameof(StackCalculator))]
     public void StackCalculatorThrowExeption_IncorrectInputWithUnknownSymbols(PolishCalculator calculator)
     {
         var expression = "b c +";

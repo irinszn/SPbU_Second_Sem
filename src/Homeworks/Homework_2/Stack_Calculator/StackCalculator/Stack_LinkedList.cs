@@ -1,5 +1,8 @@
 namespace StackCalculator;
 
+/// <summary>
+/// Class that implements stack based linked list.
+/// </summary>
 public class StackList: IStack
 {
     private LinkedList<float> stack;
@@ -9,28 +12,29 @@ public class StackList: IStack
         stack = new LinkedList<float>();
     }
 
+    /// <inheritdoc/>
     public bool IsEmpty
     {
         get{return stack.Count == 0; }
     }
 
+    /// <inheritdoc/>
     public void Push(float element)
     {
         stack.AddLast(element);
     }
 
+    /// <inheritdoc/>
     public float Pop()
     {
         if (IsEmpty)
         {
-            throw new InvalidOperationException("Can't be empty");
+            throw new InvalidOperationException("Can't be empty.");
         }
 
-        float lastElement = stack.Last();
+        var lastElement = stack.Last();
         stack.RemoveLast();
 
         return lastElement;
-
     }
-
 }
