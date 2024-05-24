@@ -1,68 +1,70 @@
-namespace BWT 
+namespace BWT
 {
     public static class BWTransform
     {
-        private static bool LineVerification(string InputString)
+        private static bool LineVerification(string inputString)
         {
-            return !string.IsNullOrEmpty(InputString);
+            return !string.IsNullOrEmpty(inputString);
         }
 
-        public static string[] SuffmasCreate(string InputString)
+        public static string[] SuffmasCreate(string inputString)
         {
-            string [] Permutations = new string [InputString.Length];
-            Permutations[0] = InputString;
+            var permutation = new string[inputString.Length];
+            permutation[0] = inputString;
             
-            for (int i = 1; i < Permutations.Length; ++i)
+            for (int i = 1; i < permutation.Length; ++i)
             {
-                Permutations[i] = Permutations[i - 1].Substring(1) + Permutations[i - 1][0];
+                permutation[i] = permutation[i - 1].Substring(1) + permutation[i - 1][0];
             }
 
-            Array.Sort(Permutations);
+            Array.Sort(permutation);
 
-            return Permutations;
+            return permutation;
         }
 
-        public static string TransformBW(string InputString)
+        public static string TransformBW(string inputString)
         {
-            if (!LineVerification(InputString))
+            if (!LineVerification(inputString))
             {
                 Console.WriteLine("Input string can not be empty");
                 System.Environment.Exit(0);
             }
 
-            string [] Permutations = SuffmasCreate(InputString);
-            string TransformString = string.Empty;
+            var permutation = SuffmasCreate(inputString);
+            var transformString = string.Empty;
 
-            foreach (var element in Permutations)
+            foreach (var element in permutation)
             {
-                TransformString = TransformString + element[Permutations.Length - 1];
+                transformString = transformString + element[permutation.Length - 1];
             }
 
-            return TransformString;
-        }
-        public static int SearchIndex(string InputString)
-        {
-            string [] Permutations = new string [InputString.Length];
-            Permutations = SuffmasCreate(InputString);
-
-            return Array.BinarySearch(Permutations, InputString) + 1;
+            return transformString;
         }
 
-        public static string ReverseTransformBW(string OutputString, int pos)
+        public static int SearchIndex(string inputString)
         {
-            string[] StringTable = new string[OutputString.Length];
+            var permutation = new string [inputString.Length];
 
-            for (int j = 0; j < OutputString.Length; ++j)
+            permutation = SuffmasCreate(inputString);
+
+            return Array.BinarySearch(permutation, inputString) + 1;
+        }
+
+        public static string ReverseTransformBW(string outputString, int pos)
+        {
+            var stringTable = new string[outputString.Length];
+
+            for (int j = 0; j < outputString.Length; ++j)
             {
-                for (int i = 0; i < OutputString.Length; ++i)
+                for (int i = 0; i < outputString.Length; ++i)
                 {
-                    StringTable[i] = OutputString[i] + StringTable[i];
+                    stringTable[i] = outputString[i] + stringTable[i];
                 }
 
-                Array.Sort(StringTable);
+                Array.Sort(stringTable);
             }
 
-            return StringTable[pos - 1];
+            return stringTable[pos - 1];
         }
     }
 }

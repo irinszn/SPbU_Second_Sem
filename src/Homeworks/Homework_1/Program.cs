@@ -2,112 +2,159 @@
  
 bool TestSuffmassCreate()
 {
-    string[] InputString = new string[] {"abc","ABACABA", "apple"};
-    string[][] Expected = new string[][] 
+    var inputString = new string[] {"abc","ABACABA", "apple"};
+    var expected = new string[][] 
     {
     new string[] {"abc", "bca", "cab"}, 
     new string[] {"AABACAB","ABAABAC", "ABACABA", "ACABAAB", "BAABACA", "BACABAA", "CABAABA"},
     new string[] {"apple", "eappl","leapp","pleap","pplea"} 
     };
-    bool Passed = true;
-    for (int i = 0; i < InputString.Length; ++i) 
+
+    for (int i = 0; i < inputString.Length; ++i) 
     {
-        string[] Actual = BWTransform.SuffmasCreate(InputString[i]);
+        var actual = BWTransform.SuffmasCreate(inputString[i]);
         
-        if (!Enumerable.SequenceEqual(Actual, Expected[i]))
+        if (!Enumerable.SequenceEqual(actual, expected[i]))
         {
-            Passed = false;
+            Console.WriteLine("TestSuffmassCreate is failed.");
+
+            return false;
         }
     }
 
-    return Passed;
+    return true;
 }
 
 bool TestTransformBW()
 {
-    string [] InputString = new string [] {"ABACABA","apple","colobok23"};
-    string[] Expected = new string [] {"BCABAAA","elppa","k2o3oolbc"};
-    bool Passed = true;
-    for (int i = 0; i < InputString.Length; ++i) 
+    var inputString = new string[] {"ABACABA","apple","colobok23"};
+    var expected = new string[] {"BCABAAA","elppa","k2o3oolbc"};
+
+    for (int i = 0; i < inputString.Length; ++i) 
     {
-        string Actual = BWTransform.TransformBW(InputString[i]);
+        var actual = BWTransform.TransformBW(inputString[i]);
         
-        if (!(Actual == Expected[i]))
+        if (!(actual == expected[i]))
         {
-            Passed = false;
+            Console.WriteLine("TestTransformBW is failed.");
+
+            return false;
         }
     }
 
-    return Passed;
+    return true;
 }
 
 bool TestSearchIndex()
 {
-    string[] InputString = new string [] {"ABACABA","apple","colobok23"};
-    int [] Expected = new int [] {3, 1, 4};
-    bool Passed = true;
+    var inputString = new string[] {"ABACABA","apple","colobok23"};
+    var expected = new int[] {3, 1, 4};
+
     for (int i = 0; i < 3; ++i)
     {
-        int Actual = BWTransform.SearchIndex(InputString[i]);
+        var actual = BWTransform.SearchIndex(inputString[i]);
 
-        if (!(Actual == Expected[i]))
+        if (!(actual == expected[i]))
         {
-            Passed = false;
+            Console.WriteLine("TestSearchIndex is failed.");
+
+            return false;
         }
     }
 
-    return Passed;
+    return true;
 }
 
 bool TestReverseTransformBW()
 {
-    string [] OutputString = new string [] {"BCABAAA","elppa","k2o3oolbc"};
-    int [] StringIndex = new int [] {3, 1, 4};
-    string [] Expected = new string [] {"ABACABA","apple","colobok23"};
-    bool Passed = true;
+    var outputString = new string[] {"BCABAAA","elppa","k2o3oolbc"};
+    var stringIndex = new int[] {3, 1, 4};
+    var expected = new string[] {"ABACABA","apple","colobok23"};
 
     for (int i = 0; i < 3; ++i)
     {
-        string Actual = BWTransform.ReverseTransformBW(OutputString[i], StringIndex[i]);
+        var actual = BWTransform.ReverseTransformBW(outputString[i], stringIndex[i]);
 
-        if (!(Actual == Expected[i]))
+        if (!(actual == expected[i]))
         {
-            Passed = false;
+            Console.WriteLine("TestReverseTransformBW is failed.");
+
+            return false;
         }
     }
 
-    return Passed;
+    return true;
 }
 
 bool Test()
 {
-    var TestCases = new bool[] {TestSuffmassCreate(), TestTransformBW(), TestSearchIndex(), TestReverseTransformBW()};
-    bool Passed = true;
-    for (int i = 0; i < TestCases.Length; ++i)
+    var testCase = new bool[] {TestSuffmassCreate(), TestTransformBW(), TestSearchIndex(), TestReverseTransformBW()};
+
+    for (int i = 0; i < testCase.Length; ++i)
     {
-        if (!TestCases[i])
+        if (!testCase[i])
         {
-            Passed = false;
+            return false;
         }
     }
 
-    return Passed;
+    return true;
 }
 
 void UserInterface()
 {
-    Console.Write("Input the string: ");
-    string? InputString = Console.ReadLine();
-    
-    string TransformString = BWTransform.TransformBW(InputString);
-    int StringIndex = BWTransform.SearchIndex(InputString);
+    Console.WriteLine("This program of BWT. \nInput 1 to direct transform \nInput 2 to reverse transform ");
 
-    Console.WriteLine("Transform string: {0}, {1} ", TransformString, StringIndex);
+    switch(Console.ReadLine())
+    {
+        case "1":
+        {
+            Console.WriteLine("Input string to BW transform: ");
 
-    Console.WriteLine("Reverse Burrows-Wheeler transform: {0}", BWTransform.ReverseTransformBW(TransformString, StringIndex));
+            var inputString = Console.ReadLine() ?? throw new ArgumentNullException("String can't be null.");
+
+            var transformString = BWTransform.TransformBW(inputString);
+            var stringIndex = BWTransform.SearchIndex(inputString);
+
+            Console.WriteLine("Transform string: {0}, {1} ", transformString, stringIndex);
+
+            break;
+        }
+        case "2":
+        {
+            Console.WriteLine("Input transform string and the position of the end of the line separated by a space: ");
+
+            var inputBWString = Console.ReadLine() ?? throw new ArgumentNullException("String can't be null.");
+
+            var transformArray = inputBWString.Split(" ");
+
+            var transformString = transformArray[0];
+
+            int stringIndex;
+
+            var result = int.TryParse(transformArray[1], out stringIndex);
+
+            if (!result)
+            {
+                Console.WriteLine("Error. Position is a number.");
+                break;
+            }
+
+            Console.WriteLine("Reverse Burrows-Wheeler transform: {0}", BWTransform.ReverseTransformBW(transformString, stringIndex));
+
+            break;
+        }
+        
+        default:
+        {
+            Console.WriteLine("Incorrect input. Input 1 or 2.");
+
+            break;
+        }
+    }
 }
 
-Console.WriteLine("Initiation tests");
+Console.WriteLine("Initiation tests.");
 
 if (Test())
 {
@@ -115,5 +162,5 @@ if (Test())
 }
 else 
 {
-    Console.Write("Test failed");
+    Console.Write("Test failed.");
 }
