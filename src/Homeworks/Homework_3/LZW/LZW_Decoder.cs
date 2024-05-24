@@ -1,9 +1,8 @@
-
 namespace LZW;
 
 public class LZWDecoder
 {
-    public byte [] Decode(string [] encodedArray)
+    public byte[] Decode(string[] encodedArray)
     {
         if (encodedArray[0] == string.Empty)
         {
@@ -11,7 +10,7 @@ public class LZWDecoder
         }
 
         int currentMaxNumber = 256;
-        var dictionary = new Dictionary<int, List<byte>> ();
+        var dictionary = new Dictionary<int, List<byte>>();
 
         for (int i = 0; i < 256; i++)
         {
@@ -26,7 +25,7 @@ public class LZWDecoder
         {
             decodeList.AddRange(dictionary[int.Parse(encodedArray[i])]);
 
-            var newElement = new List<byte> ();
+            var newElement = new List<byte>();
 
             newElement.AddRange(dictionary[int.Parse(encodedArray[i])]);
             newElement.Add(dictionary[int.Parse(encodedArray[i + 1])][0]);

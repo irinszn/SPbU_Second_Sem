@@ -2,27 +2,9 @@ namespace PrefixTree;
 
 public class Trie
 {
-    private class Node
-    {
-        public Dictionary<byte,Node> Children {get; }
-
-        public bool IsTerminal {get; set; }
-
-        public int BytesCount {get; set; }
-
-        public int Value {get; }
-
-        public Node(int value)
-        {
-            Children = new Dictionary<byte,Node>();
-            IsTerminal = false;
-            Value = value;
-        }
-    }
-    
     private Node root;
 
-    public int Size {get; private set;}
+    public int Size { get; private set; }
 
     public Trie()
     {
@@ -59,7 +41,6 @@ public class Trie
             }
 
             currentNode = currentNode.Children[bytes];
-
         }
 
         ++currentNode.BytesCount;
@@ -67,7 +48,6 @@ public class Trie
         currentNode.IsTerminal = true;
 
         return true;
-
     }
 
     public bool Contains (List<byte> list)
@@ -87,11 +67,9 @@ public class Trie
             }
 
             currentNode = currentNode.Children[bytes];
-            
         }
 
         return currentNode.IsTerminal;
-
     }
 
     public bool Remove (List<byte> list)
@@ -105,7 +83,7 @@ public class Trie
         {
             return false;
         }
-        
+
         if (!Contains(list))
         {
             return false;
@@ -176,7 +154,23 @@ public class Trie
         }
 
         return currentNode.Value;
-
     }
 
+    private class Node
+    {
+        public Dictionary<byte,Node> Children { get; }
+
+        public bool IsTerminal { get; set; }
+
+        public int BytesCount { get; set; }
+
+        public int Value { get; }
+
+        public Node(int value)
+        {
+            Children = new Dictionary<byte,Node>();
+            IsTerminal = false;
+            Value = value;
+        }
+    }
 }

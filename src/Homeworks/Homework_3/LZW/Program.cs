@@ -13,7 +13,6 @@ if (args[1] == "-c")
     {
         result = LZWTransform.TransformToZipped(args[0]);
     }
-
     catch (ArgumentException)
     {
         Console.WriteLine("Encoding failed");
@@ -22,14 +21,12 @@ if (args[1] == "-c")
 
     Console.WriteLine($"Compression is successful. Compression ratio is {result * 100}% ");
 }
-
 else if (args[1] == "-u")
 {
     try
     {
         LZWTransform.TransformToOriginal(args[0]);
     }
-
     catch (ArgumentException)
     {
         Console.WriteLine("Decoding failed");
@@ -38,7 +35,6 @@ else if (args[1] == "-u")
 
     Console.WriteLine($"Decoding is successful.");
 }
-
 else
 {
     Console.WriteLine("Incorrect input, enter the path to the file and -c to compress it or -u to decompress it");

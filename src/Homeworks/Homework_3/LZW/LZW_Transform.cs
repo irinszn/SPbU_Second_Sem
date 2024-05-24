@@ -22,12 +22,11 @@ public static class LZWTransform
 
         File.WriteAllText(newFilePath, text.Encode(fileOfBytes));
 
-        var SizeOfOriginalFile = new FileInfo(filePath).Length;
-        var SizeOfNewFile = new FileInfo(newFilePath).Length;
-    
-        return (float)SizeOfOriginalFile / SizeOfNewFile;
-    }
+        var sizeOfOriginalFile = new FileInfo(filePath).Length;
+        var sizeOfNewFile = new FileInfo(newFilePath).Length;
 
+        return (float)sizeOfOriginalFile / sizeOfNewFile;
+    }
 
     public static void TransformToOriginal(string filePath)
     {

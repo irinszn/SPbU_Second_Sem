@@ -5,12 +5,10 @@ using PrefixTree;
 
 public class LZWEncoder
 {
-
     private readonly int byteSize = 8;
 
     public string Encode(byte[] bytesArray)
     {
-
         if (bytesArray == null)
         {
             throw new ArgumentNullException("Array of bytes can't be null", nameof(bytesArray));
@@ -71,5 +69,4 @@ public class LZWEncoder
 
         return result.ToString();
     }
-
 }
