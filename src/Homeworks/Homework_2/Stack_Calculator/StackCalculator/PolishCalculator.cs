@@ -39,7 +39,7 @@ public class PolishCalculator
 
         if (!int.TryParse(stringArray[0], out var _))
         {
-            throw new InvalidoperationException("Incorrect input");
+            throw new InvalidOperationException("Incorrect input");
         }
 
         int digitCount = 0;
@@ -61,14 +61,14 @@ public class PolishCalculator
 
             else
             {
-                throw new InvalidoperationException("Incorrect input");
+                throw new InvalidOperationException("Incorrect input");
             }
 
         }
 
         if (digitCount - operationCount != 1)
         {
-            throw new InvalidoperationException("Incorrect input");
+            throw new InvalidOperationException("Incorrect input");
         }
 
         return stringArray;
@@ -140,7 +140,7 @@ public class PolishCalculator
 
             default:
             {
-                throw new InvalidoperationException("Unknown operation");
+                throw new InvalidOperationException("Unknown operation");
             }
         }
     }
