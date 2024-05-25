@@ -1,6 +1,6 @@
-using StackCalculator;
-
 namespace StackCalculatorTest;
+
+using StackCalculator;
 
 public class CalculatorTests
 {
@@ -13,10 +13,21 @@ public class CalculatorTests
     private readonly float Const = 0.01e-4F;
 
     [TestCaseSource(nameof(StackCalculator))]
-    public void CorrectWorkStackCalculator_WithCorrectInput(PolishCalculator calculator)
+    public void StackCalculator_WithCorrectInput_WorksCorrectly(PolishCalculator calculator)
     {
         var expression = "7 2 3 * - 12 / 2 +";
         double expected = 2.083333;
+        
+        var actual = calculator.CalculateExpression(expression);
+
+        Assert.That(Math.Abs(actual - expected) < Const); 
+    }
+
+    [TestCaseSource(nameof(StackCalculator))]
+    public void StackCalculator_WithSignedNumbers_WorksCorrectly(PolishCalculator calculator)
+    {
+        var expression = "100 20 + -10 *";
+        double expected = -1200;
         
         var actual = calculator.CalculateExpression(expression);
 

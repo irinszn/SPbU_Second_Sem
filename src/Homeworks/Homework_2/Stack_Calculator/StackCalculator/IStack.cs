@@ -6,6 +6,11 @@ namespace StackCalculator;
 public interface IStack
 {
     /// <summary>
+    /// Check if stack is empty.
+    /// </summary>
+    public bool IsEmpty { get; }
+
+    /// <summary>
     /// Method that puts element to the stack.
     /// </summary>
     /// <param name="element">Element to put.</param>
@@ -16,10 +21,4 @@ public interface IStack
     /// </summary>
     /// <returns>Element from stack.</returns>
     public float Pop();
-
-    /// <summary>
-    /// Check if stack is empty.
-    /// </summary>
-    public bool IsEmpty { get; }
-
 }

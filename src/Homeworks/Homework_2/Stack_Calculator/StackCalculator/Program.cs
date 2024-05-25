@@ -10,7 +10,6 @@ var calculatedExpression = stackCalculator.CalculateExpression(inputString);
 
 Console.WriteLine($"The result of expression (Array-based stack): {calculatedExpression}");
 
-
 var listStack = new StackList();
 stackCalculator = new PolishCalculator(listStack);
 

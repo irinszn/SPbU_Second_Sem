@@ -3,7 +3,7 @@ namespace StackCalculator;
 /// <summary>
 /// Class that implements stack based linked list.
 /// </summary>
-public class StackList: IStack
+public class StackList : IStack
 {
     private LinkedList<float> stack;
 
@@ -15,7 +15,7 @@ public class StackList: IStack
     /// <inheritdoc/>
     public bool IsEmpty
     {
-        get{return stack.Count == 0; }
+        get { return stack.Count == 0; }
     }
 
     /// <inheritdoc/>

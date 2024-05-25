@@ -27,9 +27,8 @@ public class PolishCalculator
     /// </summary>
     /// <param name="inputString">Input string.</param>
     /// <returns>Array of operations and operators.</returns>
-    public string[] CheckString (string? inputString)
+    public string[] CheckString(string? inputString)
     {
-
         if (inputString == null || inputString == string.Empty)
         {
             throw new NullReferenceException("String can't be empty or null");
@@ -44,26 +43,23 @@ public class PolishCalculator
 
         int digitCount = 0;
         int operationCount = 0;
-        
+
         foreach (var element in stringArray)
         {
             var isDigit = int.TryParse(element, out var _);
 
             if (isDigit)
             {
-                digitCount++ ;
+                digitCount++;
             }
-
             else if (IsSign(element))
             {
                 operationCount++;
             }
-
             else
             {
                 throw new InvalidOperationException("Incorrect input");
             }
-
         }
 
         if (digitCount - operationCount != 1)
@@ -91,14 +87,13 @@ public class PolishCalculator
             {
                 stack.Push(number);
             }
-
             else if (IsSign(element))
             {
                 float result = TransformValue(stack.Pop(), stack.Pop(), char.Parse(element));
                 stack.Push(result);
             }
         }
-        
+
         return stack.Pop();
     }
 
@@ -117,31 +112,29 @@ public class PolishCalculator
         {
             case '+':
                 return firstNumber + secondNumber;
-            
+
             case '-':
                 return secondNumber - firstNumber;
 
             case '*':
                 return firstNumber * secondNumber;
-            
+
             case '/':
                 {
                     if (Math.Abs(firstNumber) < NullConst)
                     {
                         throw new DivideByZeroException("Division by zero");
                     }
-
-                    else 
+                    else
                     {
                         return secondNumber / firstNumber;
                     }
-
                 }
 
             default:
-            {
-                throw new InvalidOperationException("Unknown operation");
-            }
+                {
+                    throw new InvalidOperationException("Unknown operation");
+                }
         }
     }
 }

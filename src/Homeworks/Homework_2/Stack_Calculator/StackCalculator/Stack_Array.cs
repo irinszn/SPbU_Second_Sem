@@ -3,17 +3,15 @@ namespace StackCalculator;
 /// <summary>
 /// Class that implements array-based stack.
 /// </summary>
-public class StackArray: IStack
+public class StackArray : IStack
 {
     private float[] stack;
-    
-    private int arraySize = 2;
-    
+
     private int topIndex;
-    
-    public StackArray() 
+
+    public StackArray()
     {
-       this.stack = new float[this.arraySize];
+       this.stack = new float[2];
     }
 
     /// <inheritdoc/>
@@ -21,13 +19,13 @@ public class StackArray: IStack
     {
         get { return topIndex == 0; }
     }
- 
+
     /// <summary>
     /// Checks if stack is overflow.
     /// </summary>
     public bool IsOverflow
     {
-        get { return topIndex == arraySize; }
+        get { return topIndex == stack.Length; }
     }
 
     /// <inheritdoc/>
@@ -35,8 +33,7 @@ public class StackArray: IStack
     {
         if (IsOverflow)
         {
-            arraySize = arraySize * 2;
-            Array.Resize(ref stack, arraySize);
+            Array.Resize(ref stack, stack.Length * 2);
         }
 
         stack[topIndex] = element;
@@ -54,14 +51,7 @@ public class StackArray: IStack
         topIndex--;
 
         var topElement = stack[topIndex];
-    
+
         return topElement;
     }
 }
-
-
-
-
-
-
-
