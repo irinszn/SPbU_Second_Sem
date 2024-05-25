@@ -20,7 +20,7 @@ public class Tests
     {
         tree.BuildTree(expression);
 
-        Assert.That(tree.Calculate() == expected);
+        Assert.AreEqual(expected, tree.Calculate());
     }
 
     [TestCase("(- * / (+ 138 2)10 5 3)", "- * / + 138 2 10 5 3")]
@@ -32,7 +32,7 @@ public class Tests
         tree.BuildTree(inputString);
         var result = tree.GetTree();
        
-        Assert.That(result == expected);
+        Assert.AreEqual(expected, result);
     }
 
     [TestCase("3 * 3")]
